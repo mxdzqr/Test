@@ -25,11 +25,14 @@ class Table
         $result= $db->prepare($sql);
         $result->execute();
 
-        return $result->fetchAll();
+        return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 
 $arResult = Table::getList('item');
+echo "<pre>";
+print_r($arResult);
+echo "</pre>";
 ?>
 <style>
     table.minimalistBlack {
@@ -61,7 +64,7 @@ $arResult = Table::getList('item');
     </thead>
     <tbody>
     <? foreach($arResult as $arItems): ?>
-        <tr><td><?= $arItems[1] ?></td></tr>
+        <tr><td><?= $arItems['name'] ?></td></tr>
     <? endforeach;?>
     </tbody>
     </tr>
